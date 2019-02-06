@@ -10,3 +10,43 @@
   -webkit-box-align: end;
   -ms-flex-align: end;
   align-items: flex-end; }
+
+.full-button {
+  width: 100%;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  color: white !important; }
+
+.full-width {
+  width: 100%; }
+  .full-width li {
+    width: 100%; }
+
+.card-image {
+  min-height: 250px !important; }
+
+/* .promo-container  {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    max-width: 1300px;
+
+    >.promo-content {
+        display: flex;
+        flex: 1;
+        height: 140px;
+        padding-right: 6em;
+        background-color: red;
+        justify-content: flex-end;
+        &:last-child {
+            justify-content: flex-start;
+            background-color: green;
+            padding-left: 6em;
+            padding-right: 0px;
+        }
+        >.content {
+            width: 50%;
+            background-color: yellow;
+        }
+    }
+}*/

@@ -103,9 +103,11 @@
                     {% endfor %}
                     <h3>{{ randomEntry.title }}</h3>
                     <p>{{ randomEntry.teaser }}</p>
-                    <ul class="actions">
-                        <li><a href="{{ siteUrl }}{{ randomEntry.uri }}" class="button alt">Learn More</a></li>
-                    </ul>
+                    <div class="read-button">
+                        <ul class="full-width actions">
+                            <li><a href="{{ siteUrl }}{{ randomEntry.uri }}" class="full-button button">Learn More</a></li>
+                        </ul>
+                    </div>
                 </div>
             {% endfor %}
             </div>

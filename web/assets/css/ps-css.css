@@ -231,6 +231,10 @@ iframe {
   transition: all 0.3s;
 }
 
+.header {
+  height: 120px !important;
+}
+
 .header a:hover {
   text-decoration: underline !important;
 }
