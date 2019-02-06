@@ -38,6 +38,8 @@ hr {
   justify-content: start;
   margin-bottom: 2em; }
   .offer-wrapper > .card {
+    display: flex;
+    flex-direction: column;
     padding: 1em;
     margin-right: 1%;
     margin-bottom: 1%;
@@ -128,10 +130,13 @@ hr {
 
 #howto {
   background-color: #5d6151;
-  color: #797e63;
+  color: #aeb1a2;
   padding: 4em 0 2em 0;
   background: #5d6151; }
 
+#howto h2 {
+  color: #fff; }
+  
 #howto h3 {
   color: #fff; }
 

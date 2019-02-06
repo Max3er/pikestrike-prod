@@ -5,6 +5,7 @@ composer.json
 composer.lock
 craft
 craft.bat
+prepros-6.config
 /config
 /dev
 /modules
@@ -15,3 +16,5 @@ craft.bat
 /web/index.php
 /web/web.config
 /web/assets/images
+/Prepros Export
+/backup-files
