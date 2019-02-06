@@ -1,0 +1,17 @@
+.env
+.env.example
+.htaccess
+composer.json
+composer.lock
+craft
+craft.bat
+/config
+/dev
+/modules
+/storage
+/vendor
+/web/cpresources
+/web/https_
+/web/index.php
+/web/web.config
+/web/assets/images

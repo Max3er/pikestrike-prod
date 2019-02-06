@@ -1,0 +1,122 @@
+{% extends '_layout' %}
+
+{% block main %}
+
+    {% for entry in craft.entries.section('startsida').limit(1).all() %}
+
+        <!-- Input Banner from layout -->
+
+            <div class="inner banner-text">
+                <h1>{{ entry.rubrik }} <span>{{ entry.underrubrik }}</span></h1>
+                <a href="#AboutUs"><i class="fas fa-arrow-down AboutUs"></i></a>
+            </div>
+
+        </section>
+        <!-- End Banner -->
+        <div id="AboutUs"></div>
+        <!-- One: Welcome text -->
+        <section id="one">
+            <div class="inner fisherman-bg">
+                <header>
+                    <h2>{{ entry.rubrikAbout }}</h2>
+                </header>
+                {{ entry.beskrivningAbout }}
+                <hr>
+                <div class="social-media">
+                    <h3>Visit us on social medias</h3>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/PikeStrike-Sweden-pike-fishing-in-Blekinge-180406528642412/"><i class="fab fa-facebook fa-4x"></i></a>
+                    <a href="https://www.youtube.com/user/pikestrikesweden"><i class="fab fa-youtube fa-4x"></i></a>
+                </div>
+            </div>
+        </section>
+        <!-- End One: Welcome text -->
+
+        <!-- 2 Main offers -->
+        {% set promos = craft.entries.section('promos').limit(2).all %}
+        <section id="two">
+            <div class="inner">
+                {% set relatedEntries = entry.startsidaPromos.all() %}
+                {% if relatedEntries|length %}
+                    {% for rel in relatedEntries %}
+                        <article>
+                            <div class="content">
+                                <header>
+                                    <h2>{{ rel.title }}</h2>
+                                </header>
+                                <div class="image fit">
+                                    {% for asset in rel.bildPromo.all() %}
+                                        <img src="{{ asset.url }}" alt="" />
+                                    {% endfor %}
+                                </div>
+                                <p>{{ rel.beskrivningPromo }}</p>
+                                <ul class="actions">
+                                    <li><a href="{{ rel.urlPromo }}" class="button alt">{{ rel.knappPromo }}</a></li>
+                                </ul>
+                            </div>
+                        </article>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </section>
+        <!-- End 2 Main offers -->
+
+        <!-- One: Image gallery -->
+        <section id="one" style="background-color: #f7f7f7; background-image: none;">
+            <div class="inner">
+                <h2>Fishing with Pikestrike</h2>
+                <div class="box alt">
+                    <div class="row 50% uniform">
+                        {% for asset in entry.bildgalleri.all() %}
+                            <div class="4u"><span class="image fit"><img src="{{ asset.url }}" alt=""></span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End One: Image gallery -->
+
+		<!-- Partners section -->
+		<section id="partners">
+			<div class="inner">
+				<header>
+					<h2>Our partners</h2>
+				</header>
+				<div class="partner-logos">
+                    <div class="partner-item">
+                        <a href="http://jacksonkayak.com/" target="_self">
+                            <img src="assets/images/partners/jackson-logo.png">
+                        </a>
+                    </div>
+                    <div class="partner-item">
+                        <a href="http://www.boddenbash.com/" target="_self">
+                            <img class="image fit" src="assets/images/partners/bodden-logo.png">
+                        </a>
+                    </div>
+                    <div class="partner-item">
+                        <a href="http://www.sandhamnmarine.se/" target="_self">
+                            <img class="image fit" src="assets/images/partners/sandhamn-logo.png">
+                        </a>
+                    </div>
+                    <div class="partner-item">
+                        <img class="image fit" src="assets/images/partners/dragso-logo.png">
+                    </div>
+                    <div class="partner-item">
+                        <a href="http://www.johan-broman.se/" target="_self">
+                            <img class="image fit" src="assets/images/partners/broman-logo.png">
+                        </a>
+                    </div>
+                    <div class="partner-item">
+                        <a href="https://www.visitblekinge.se/" target="_self">
+                            <img class="image fit" src="assets/images/partners/visit-logo.png">
+                        </a>
+                    </div>
+                </div>
+			</div>
+		</section>
+        <!-- End Partners section -->
+
+    {% endfor %}
+
+{% endblock %}

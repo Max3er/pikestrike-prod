@@ -1,0 +1,129 @@
+{% extends '_layout' %}
+
+{% block main %}
+
+    <!-- Section main -->
+    <section id="main" >
+        <div class="inner">
+
+            <header class="major special">
+                <h1>{{ entry.title }}</h1>
+                <p>{{ entry.ingress }}</p>
+            </header>
+
+            <!-- Main picture -->
+            {% for asset in entry.huvudbildErbjudanden.all() %}
+                <a href="#" class="image fit"><img src="{{ siteUrl }}{{ asset.url }}" alt="" /></a>
+            {% endfor %}
+            <!-- End Main picture -->
+
+            <!-- Product info -->
+            <div class="product-info">
+                <div class="text">
+                    {{ entry.beskrivningErbjudande }}
+                    <a href="#how-to-book" class="button bt-book">How to book</a>
+                </div>
+                <!-- Data table -->
+                <!-- If table row is empty -->
+                {% if entry.priceInformation|length and (entry.priceInformation[0].description) %}
+                    <div class="description">
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in entry.priceInformation %}
+                                    <tr>
+                                        <td>{{ row.description }}</td>
+                                        <td class="tdOption">{{ row.option }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        {% if entry.visaPris|length %}
+                                            <td colspan="1">Price:</td>
+                                            <td class="tdPrice"><strong>{{ entry.pris }}</strong></td>
+                                        {% endif %}
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                {% endif %}
+                <!-- End Data table -->
+            </div>
+            <!-- End Product info -->
+
+            <!-- Image gallery -->
+            {% if entry.bilderErbjudande|length %}
+                <div class="box alt">
+                    <div class="row 50% uniform">
+                        {% for asset in entry.bilderErbjudande.all() %}
+                            <div class="4u"><span class="image fit"><img src="{{ siteUrl }}{{ asset.url }}" alt=""></span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            <!-- End Image gallery -->
+
+            <!-- More info -->
+            {{ entry.utokadInformation }}
+            <!-- End More info -->
+
+            <!-- Media -->
+            {% set asset = entry.mediaYoutube.one() %}
+            {% if asset|length %}
+                {% set embed = craft.embeddedAssets.get(asset) %}
+                {% if embed %}
+                    <h3>{{ embed.title }}</h3>
+                    {{ embed.html }}
+                {% endif %}
+            {% endif %}
+            <!-- End Media -->
+
+        </div>
+        <!-- End Inner -->
+    </section>
+    <!-- End Section main -->
+
+    <!-- Section Other offers -->
+    <section id="one" style="background-color: #f7f7f7;">
+        <div class="inner">
+            <h2 style="color: #7E846F;">More offers</h2>
+            <div class="offer-wrapper">
+            {% for randomEntry in craft.entries.section('erbjudanden').orderBy('RAND()').limit(3).id('not ' ~ entry.id).all() %}
+                <div class="card">
+                    {% for asset in randomEntry.bilderErbjudande.limit(1).all() %}
+                        <span class="image fit"><img src="{{ siteUrl }}{{ asset.url }}" alt=""></span>
+                    {% endfor %}
+                    <h3>{{ randomEntry.title }}</h3>
+                    <p>{{ randomEntry.teaser }}</p>
+                    <ul class="actions">
+                        <li><a href="{{ siteUrl }}{{ randomEntry.uri }}" class="button alt">Learn More</a></li>
+                    </ul>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- End Section Other offers -->
+
+    <!-- Section howto-->
+    <section id="howto">
+        <div class="inner">
+            <header>
+                <h2>How to book</h2>
+            </header>
+            {% for entry in craft.entries.section('howToBook').limit(1).all() %}
+                {{ entry.bokningsBeskrivning }}
+            {% endfor %}
+        </div>
+    </section>
+    <!-- End Section howto -->
+
+{% endblock %}

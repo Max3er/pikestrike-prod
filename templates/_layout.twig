@@ -1,0 +1,151 @@
+<html>
+	<head>
+		<title>Pikestrike Sweden</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ siteUrl }}assets/css/main.css" />
+		<link rel="stylesheet" href="{{ siteUrl }}assets/css/ps-css.css" />
+        
+        <!-- Font and icons -->
+        <link href="https://fonts.googleapis.com/css?family=Sarabun:800i" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+	</head>
+	<body>
+
+        <!-- Check if the URL is on the startpage -->
+        {% set setPage = craft.request.url %}
+        {% if craft.app.sites.primarySite.baseUrl == setPage %}
+            
+            <!-- Banner start -->
+            {% for asset in entry.huvudbild.all() %}
+                <section id="banner" style="background-image: url('{{ asset.url }}');">
+            {% endfor %}
+            <!-- End Banner in index.twig file -->        
+
+        {% endif %}
+
+		<!-- Header -->
+		<header id="header" class="header">
+			<div class="flex-menu inner">
+                <a class="logo flex-logo" href="/">
+                    <img class="logo-mini" src="{{ siteUrl }}assets/images/pikestrike_logo_mini.svg">
+                    <img class="header-image" src="{{ siteUrl }}assets/images/pikestrike_logo_diap.svg">
+                </a>
+                <!-- <a href="index.html" class="logo">introspect</a> -->
+				<nav id="nav">
+					<a href="{{ siteUrl }}">Home</a>
+					<a href="/offers">Boat fishing</a>
+					<a href="/kayaks">Kayak fishing</a>
+					<a href="#contactus">Contact us</a>
+				</nav>
+			</div>
+		</header>
+		<!-- End Header -->
+
+        {% if craft.app.session.hasFlash('notice') %}
+
+            <div style="background-color: green; padding: 20px; color: white; text-align: center; font-weight: bold;">
+                {{ craft.app.session.getFlash('notice') }}! We will get back to you as soon as possible.<br>
+                Best Regrads Pikestrike sweden
+            </div>
+
+        {% elseif craft.app.session.hasFlash('error') %}
+
+            <div style="background-color: red; padding: 20px; color: white; text-align: center; font-weight: bold;">
+                {{ craft.app.session.getFlash('error') }}
+            </div>
+
+        {% endif %}
+
+		<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+        {% block main %}
+
+            <!-- Main content -->
+
+        {% endblock %}
+
+		<!-- Footer -->
+        <div id="contactus"></div>
+        <!-- Messages -->
+        <section id="footer">
+            <div class="inner">
+                <header>
+                    <h2>Get in Touch</h2>
+                </header>
+
+                <!-- Form errors -->
+                {% macro errorList(errors) %}
+                    {% if errors %}
+                        <ul class="errors">
+                            {% for error in errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endmacro %}
+
+                {% from _self import errorList %}
+
+                <form method="post" action="" accept-charset="UTF-8">
+
+                    {{ csrfInput() }}
+                    <input type="hidden" name="action" value="contact-form/send">
+                    {{ redirectInput('{{ siteUrl }}') }}
+
+                    <div class="field half first">
+                        <label for="from-name">Your Name</label>
+                        <input id="from-name" type="text" name="fromName" value="{{ message.fromName ?? '' }}">
+                        {{ message is defined and message ? errorList(message.getErrors('fromName')) }}
+                    </div>
+
+                    <div class="field half">
+                        <label for="from-email">Your Email</label>
+                        <input id="from-email" type="email" name="fromEmail" value="{{ message.fromEmail ?? '' }}">
+                        {{ message is defined and message ? errorList(message.getErrors('fromEmail')) }}
+                    </div>
+
+                    <div class="field">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message">{{ message.message ?? '' }}</textarea>
+                        {{ message is defined and message ? errorList(message.getErrors('message')) }}
+                    </div>
+
+                    <ul class="actions">
+                        <li><input type="submit" value="Send"></li>
+                    </ul>
+                </form>
+            </div>
+        </section>
+        <!-- End Messages -->
+
+        <!-- Contact information -->
+        <section id="footer" style="background-color: #1c1c1c;">
+            <div class="inner">
+                <div class="footer-information">
+                    <h2>Contact us</h2>
+                    <p>Pikestrike Sweden<br>
+                    Färmanstorp<br>
+                    37333 Nättraby<br>
+                    Phone: +46 705 920 868<br>
+                    Mail: pikestrike@hotmail.com
+                    </p>
+                </div>
+                <div class="copyright">
+                    &copy; Copyright Pikestrike Sweden 2019.
+                </div>
+            </div>
+        </section>
+        <!-- End Contact information -->
+        <!-- End Footer -->
+
+		<!-- Scripts -->
+        <script src="{{ siteUrl }}assets/js/jquery.min.js"></script>
+        <script src="{{ siteUrl }}assets/js/skel.min.js"></script>
+        <script src="{{ siteUrl }}assets/js/util.js"></script>
+        <script src="{{ siteUrl }}assets/js/main.js"></script>
+        <script src="{{ siteUrl }}assets/js/ps-main.js"></script>
+        <script src="{{ siteUrl }}assets/js/ps-js.js"></script>
+	</body>
+</html>

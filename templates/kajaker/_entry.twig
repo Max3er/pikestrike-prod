@@ -1,0 +1,105 @@
+{% extends '_layout' %}
+
+{% block main %}
+    
+    <!-- Section main -->
+    <section id="main" >
+        <div class="inner">
+
+            <!-- Header -->
+            <header class="major special">
+                <h1>{{ entry.titleKayaks }}</h1>
+                <p>{{ entry.ingressKayaks }}</p>
+                <a href="#how-to-book" class="button bt-book">How to book</a>
+            </header>
+            <hr>
+            <!-- End Header -->
+
+            {% set categoryId = craft.categories.slug('single-offer').all() %}
+            {% set entries = craft.entries.section('erbjudanden').relatedTo(categoryId).orderBy('prioritering').all() %}
+            
+            <!-- Offer - A category and items -->
+            <h2>Kayak fishing offers</h2>
+            
+            <div class="offer-wrapper">
+                {% for entry in entries %}
+                    <div class="card">
+                        {% for asset in entry.teaserBild.all() %}
+                                <span class="image fit"><img src="{{ asset.url }}" alt=""></span>
+                        {% endfor %}
+                        <h3>{{ entry.title }}</h3>
+                        <p>{{ entry.teaser }}</p>
+                        <ul class="actions">
+                            <li><a href="{{ entry.uri }}" class="button alt">Learn More</a></li>
+                        </ul>							
+                    </div>
+                {% endfor %}															
+            </div>
+            <!-- End Offer - A category and items -->
+
+            <hr>
+
+            <!-- Main picture -->
+            {% for asset in entry.huvudbildKayak.all() %}
+                <a href="#" class="image fit"><img src="{{ asset.url }}" alt="" /></a>
+            {% endfor %}
+            <!-- End Main picture -->
+
+            <!-- Product info -->
+            <div class="product-info">
+                <div class="text">
+                    {{ entry.brodtextSpalt1 }}
+                    <!--- <a href="#how-to-book" class="button bt-book">How to book</a> -->
+                </div>
+                <div class="description">
+                    {{ entry.brodtextSpalt2 }}
+                </div>
+            </div>
+            <!-- End Product info -->
+
+            <!-- Image gallery -->
+            {% if entry.bilderKayaks|length %}
+                <div class="box alt">
+                    <div class="row 50% uniform">
+                        {% for asset in entry.bilderKayaks.all() %}
+                            <div class="4u"><span class="image fit"><img src="{{ asset.url }}" alt=""></span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            <!-- End Image gallery -->          
+            
+            <!-- More info -->
+            {{ entry.utokadInformationKayaks }}
+            <!-- End More info -->
+            
+            <!-- Media -->
+            {% set asset = entry.youtubeKayaks.one() %}
+            {% if asset|length %}
+                {% set embed = craft.embeddedAssets.get(asset) %}
+                {% if embed %}
+                    <h3>{{ embed.title }}</h3>
+                    {{ embed.html }}
+                {% endif %}
+            {% endif %}
+            <!-- End Media -->
+
+        </div>
+        <!-- End Inner -->
+    </section>
+    <!-- End Section main -->
+
+    <!-- Section howto-->
+    <section id="howto">
+        <div class="inner">
+            <header>
+                <h2>How to book</h2>
+            </header>
+            {% for entry in craft.entries.section('howToBook').limit(1).all() %}
+                {{ entry.bokningsBeskrivning }}
+            {% endfor %}
+        </div>
+    </section>
+    <!-- End Section howto -->
+
+{% endblock %}
