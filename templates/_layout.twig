@@ -15,7 +15,7 @@
 	<body>
 
         <!-- Check if the URL is on the startpage -->
-        {% set setPage = craft.request.url %}
+        {% set setPage = craft.app.request.absoluteUrl %}
         {% if craft.app.sites.primarySite.baseUrl == setPage %}
             
             <!-- Banner start -->
