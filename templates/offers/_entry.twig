@@ -29,7 +29,10 @@
                 {% for entry in entries %}
                     <div class="card">
                         {% for asset in entry.teaserBild.all() %}
-                                <span class="image fit"><img class="card-image" src="{{ asset.url }}" alt=""></span>
+                                <span class="image fit">
+                                    <div class="offer-item-img" style="background-image: url('{{ asset.url }}');">
+                                    </div>
+                                </span>
                         {% endfor %}
                         <h3>{{ entry.title }}</h3>
                         <p>{{ entry.teaser }}</p>

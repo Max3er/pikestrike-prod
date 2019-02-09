@@ -99,7 +99,13 @@
             {% for randomEntry in craft.entries.section('erbjudanden').orderBy('RAND()').limit(3).id('not ' ~ entry.id).all() %}
                 <div class="card">
                     {% for asset in randomEntry.bilderErbjudande.limit(1).all() %}
-                        <span class="image fit"><img src="{{ siteUrl }}{{ asset.url }}" alt=""></span>
+
+                        <span class="image fit">
+                            <div class="offer-item-img" style="background-image: url('{{ siteUrl }}{{ asset.url }}');">
+                            </div>
+                        </span>
+
+                        
                     {% endfor %}
                     <h3>{{ randomEntry.title }}</h3>
                     <p>{{ randomEntry.teaser }}</p>

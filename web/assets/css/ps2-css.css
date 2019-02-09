@@ -23,7 +23,14 @@
     width: 100%; }
 
 .card-image {
-  min-height: 250px !important; }
+  min-height: 280px !important;
+  max-height: 280px !important; }
+
+.offer-item-img {
+  display: block;
+  min-height: 280px;
+  background-size: cover;
+  background-position: center; }
 
 /* .promo-container  {
     display: flex;
