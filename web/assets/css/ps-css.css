@@ -94,6 +94,7 @@ hr {
 }
 
 .footer-information {
+  flex: 1;
   color: #f3f3f3 !important; }
 
 .copyright {

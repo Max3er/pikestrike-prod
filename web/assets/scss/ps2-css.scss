@@ -32,6 +32,47 @@
     background-position: center;
 }
 
+// Table offer item
+
+.table-wrapper {
+    tbody {
+        font-size: 0.75em;
+        tr {
+            &:hover {
+                background-color: #F9F9F9;
+            }
+        }
+    }
+}
+
+// Footer
+
+.footer-placeholder {
+    display: flex;
+    > .logo-holder {
+        padding-right: 3em;
+        margin-right: 3em;
+        border-right: 1px solid #3B3B3B;
+        display: flex;
+        width: 30%;
+        height: inherit;
+        justify-content: flex-end;
+        align-items: center;
+        height: auto;
+    }
+    > .other_nav {
+        a {
+            float: left;
+            clear:left;
+            text-decoration: underline;
+        }
+    }
+}
+
+.copyright {
+    text-align: center !important;
+    margin-top: 2em !important;
+}
 // Test a new section main promos
 
 /* .promo-container  {
@@ -59,3 +100,31 @@
         }
     }
 }*/
+
+@media screen and (max-width: 736px) {
+    .footer-placeholder {
+        flex-direction: column;
+        > .logo-holder {
+            display: none;
+        }
+        > .other_nav {
+            text-align: center;
+            a {
+                padding-right: 0.5em;
+                float: none !important;
+                text-align: center;
+            }
+        }
+    }
+    .footer-information {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 1680px) {
+    .table-wrapper {
+        tbody {
+            font-size: 1em;
+        }
+    }
+}
