@@ -48,14 +48,14 @@
 
         {% if craft.app.session.hasFlash('notice') %}
 
-            <div style="background-color: green; margin-top: 50px; padding: 20px; color: white; text-align: center; font-weight: bold;">
+            <div style="background-color: green; margin-top: 120px; padding: 20px; color: white; text-align: center; font-weight: bold;">
                 {{ craft.app.session.getFlash('notice') }}! We will get back to you as soon as possible.<br>
                 Best Regrads Pikestrike sweden
             </div>
 
         {% elseif craft.app.session.hasFlash('error') %}
 
-            <div style="background-color: red; padding: 20px; color: white; text-align: center; font-weight: bold;">
+            <div style="background-color: red; margin-top: 120px; padding: 20px; color: white; text-align: center; font-weight: bold;">
                 {{ craft.app.session.getFlash('error') }}
             </div>
 
