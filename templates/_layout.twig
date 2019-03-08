@@ -3,7 +3,9 @@
 		<title>Pikestrike Sweden</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="{{ siteUrl }}assets/css/main.css" />
+		
+        <!-- Styles -->
+        <link rel="stylesheet" href="{{ siteUrl }}assets/css/main.css" />
 		<link rel="stylesheet" href="{{ siteUrl }}assets/css/ps-css.css" />
         <link rel="stylesheet" href="{{ siteUrl }}assets/css/ps2-css.css" />
         
@@ -11,6 +13,7 @@
         <link href="https://fonts.googleapis.com/css?family=Sarabun:800i" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
+        <!-- Javascript -->
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 	</head>
@@ -92,7 +95,6 @@
                 {% from _self import errorList %}
 
                 <form method="post" action="" accept-charset="UTF-8">
-                    <div class="g-recaptcha" data-sitekey="6LdScZYUAAAAAIdDHe9t22Eb2L3jrt4ERYcyX1mX"></div>
 
                     {{ csrfInput() }}
                     <input type="hidden" name="action" value="contact-form/send">
@@ -119,6 +121,7 @@
                     <ul class="actions">
                         <li><input type="submit" value="Send"></li>
                     </ul>
+                    <div class="g-recaptcha" data-sitekey="6LdScZYUAAAAAIdDHe9t22Eb2L3jrt4ERYcyX1mX"></div>
                 </form>
             </div>
         </section>
