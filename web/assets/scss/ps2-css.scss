@@ -66,12 +66,34 @@
             clear:left;
             text-decoration: underline;
         }
+        h3 {
+            
+        }
+        >.links {
+            display: flex !important;
+            flex-direction: column;
+            margin-bottom: 1em;
+        }
+        >.icons {
+            display: flex !important;
+            flex-direction: row;
+            i {
+                font-size: 2.5em !important;
+                margin-right: .5em;
+            }
+        }
     }
 }
 
 .copyright {
     text-align: center !important;
     margin-top: 2em !important;
+}
+
+nav {
+    i {
+        font-size: 1.35em !important;
+    }
 }
 // Test a new section main promos
 
@@ -107,17 +129,29 @@
         > .logo-holder {
             display: none;
         }
-        > .other_nav {
+        >.other_nav {
+            display: block;
             text-align: center;
             a {
                 padding-right: 0.5em;
                 float: none !important;
                 text-align: center;
             }
+            >.icons {
+                display: flex !important;
+                flex-direction: row;
+                justify-content: center;
+                i {
+                    font-size: 4em !important;
+                }
+            }
         }
     }
     .footer-information {
         text-align: center;
+    }
+    .soc-icons {
+        font-size: .5rem !important;
     }
 }
 
